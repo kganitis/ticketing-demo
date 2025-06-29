@@ -34,7 +34,16 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger";
 });
 
-app.MapGet("/", () => "ticketingdemo up and running");
+app.Use(async (context, next) =>
+{
+    if (context.Request.Path == "/")
+    {
+        context.Response.Redirect("/swagger/index.html", permanent: false);
+        return;
+    }
+
+    await next();
+});
 
 app.UseHttpsRedirection();
 app.MapControllers();

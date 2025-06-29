@@ -27,15 +27,12 @@ builder.Services.AddSingleton<ITicketRepository, InMemoryTicketRepository>();
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "TicketingDemo API");
-        c.RoutePrefix = "swagger";
-    });
-}
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "TicketingDemo API");
+    c.RoutePrefix = "swagger";
+});
 
 app.MapGet("/", () => "ticketingdemo up and running");
 

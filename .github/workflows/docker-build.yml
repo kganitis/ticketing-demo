@@ -7,11 +7,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     env:
-      IMAGE_NAME: yourdockerhubusername/ticketingdemo
+      IMAGE_NAME: ticketingdemo
+      DOCKERHUB_USERNAME: kganitis
 
     steps:
       - name: Checkout repository
@@ -27,7 +28,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t $IMAGE_NAME -f Web/Dockerfile .
+        run: |
+          docker build -t $DOCKERHUB_USERNAME/$IMAGE_NAME:latest -f Web/Dockerfile .
 
       - name: Push Docker image
-        run: docker push $IMAGE_NAME
+        run: |
+          docker push $DOCKERHUB_USERNAME/$IMAGE_NAME:latest

@@ -1,0 +1,14 @@
+﻿**/bin
+**/obj
+*.user
+*.suo
+*.dbmdl
+*.jfm
+*.log
+.vscode/
+.idea/
+.DS_Store
+.git/
+.gitignore
+Dockerfile*
+docker-compose*

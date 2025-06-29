@@ -37,6 +37,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.MapGet("/", () => "ticketingdemo up and running");
+
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();

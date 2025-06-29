@@ -31,6 +31,5 @@ jobs:
         run: |
           docker build -t $IMAGE_NAME -f Web/Dockerfile .
 
-      # Optional: push to registry later
-      # - name: Push Docker image
-      #   run: docker push $IMAGE_NAME
+      - name: Push Docker image
+        run: docker push $IMAGE_NAME

@@ -1,0 +1,11 @@
+services:
+  web:
+    image: ticketingdemo
+    build:
+      context: .
+      dockerfile: Web/Dockerfile
+    ports:
+      - "8080:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
